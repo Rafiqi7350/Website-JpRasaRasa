@@ -58,39 +58,6 @@ body {
 }
 
 /* --------------------------------------------------
-   SCHEDULE SECTION
--------------------------------------------------- */
-.schedule-section {
-    max-width: 1400px;
-    margin: 0 auto 50px;
-    padding: 30px 20px;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    border-radius: 25px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    animation: fadeInUp 0.8s ease 0.2s both;
-}
-
-.schedule-section h1 {
-    font-size: 42px;
-    margin-bottom: 15px;
-    font-weight: 700;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-}
-
-.schedule-section p {
-    font-size: 20px;
-    margin: 8px 0;
-    font-weight: 500;
-    opacity: 0.95;
-}
-
-.schedule-icon {
-    font-size: 48px;
-    margin-bottom: 15px;
-}
-
-/* --------------------------------------------------
    ENDORSEMENT SECTION
 -------------------------------------------------- */
 .endorse-wrap {
@@ -281,6 +248,7 @@ footer {
     .schedule-time {
         font-size: 22px;
         margin: 5px 0;
+        font-weight: bold;
     }
 
 
