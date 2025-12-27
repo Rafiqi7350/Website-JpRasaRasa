@@ -1,0 +1,309 @@
+/* --------------------------------------------------
+   RESET & BASE STYLE
+-------------------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f79c0a 0%, #e88d0a 100%);
+    color: #fff;
+    text-align: center;
+    min-height: 100vh;
+    padding-bottom: 50px;
+}
+
+/* --------------------------------------------------
+   HEADER (Logo + Background Makanan)
+-------------------------------------------------- */
+.header-hero {
+    position: relative;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto 40px;
+    padding: 60px 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.bg-food {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.logo-main {
+    position: relative;
+    width: 220px;
+    z-index: 3;
+    filter: drop-shadow(0px 6px 20px rgba(0, 0, 0, 0.4));
+    animation: fadeInDown 0.8s ease;
+}
+
+.header-hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(247, 156, 10, 0.9) 0%, rgba(195, 91, 0, 0.85) 100%);
+    z-index: 2;
+}
+
+/* --------------------------------------------------
+   ENDORSEMENT SECTION
+-------------------------------------------------- */
+.endorse-wrap {
+    background: linear-gradient(135deg, #ffe5b2 0%, #ffd89b 100%);
+    color: #c35b00;
+    width: 90%;
+    max-width: 1400px;
+    margin: 50px auto;
+    padding: 40px 30px;
+    border-radius: 30px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+    animation: fadeInUp 0.8s ease 0.4s both;
+    transition: transform 0.3s ease;
+}
+
+.endorse-wrap:hover {
+    transform: translateY(-5px);
+}
+
+.endorse-wrap h2 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.endorse-wrap h3 {
+    font-size: 48px;
+    margin: 15px 0 25px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #ff6b35, #f7931e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+}
+
+/* --------------------------------------------------
+   BUTTONS & LINKS
+-------------------------------------------------- */
+.sosmed-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    color: #fff;
+    text-decoration: none;
+    background: linear-gradient(135deg, #d66412 0%, #bd6a17 100%);
+    width: 90%;
+    max-width: 650px;
+    margin: 15px auto;
+    padding: 18px 25px;
+    border-radius: 50px;
+    font-size: 20px;
+    font-weight: 600;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.sosmed-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.sosmed-item:hover::before {
+    left: 100%;
+}
+
+.sosmed-item:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+}
+
+.sosmed-item:active {
+    transform: translateY(-1px) scale(0.98);
+}
+
+.sosmed-item img {
+    width: 32px;
+    height: 32px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* --------------------------------------------------
+   SOCIAL MEDIA SECTION
+-------------------------------------------------- */
+.section-title {
+    font-size: 38px;
+    margin: 50px 0 30px;
+    font-weight: 700;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.8s ease 0.6s both;
+}
+
+.social-container {
+    animation: fadeInUp 0.8s ease 0.7s both;
+}
+
+/* --------------------------------------------------
+   FOOTER
+-------------------------------------------------- */
+footer {
+    margin-top: 60px;
+    padding: 20px;
+    font-size: 14px;
+    color: rgba(76, 47, 0, 0.7);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* --------------------------------------------------
+   ANIMATIONS
+-------------------------------------------------- */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* --------------------------------------------------
+   RESPONSIVE MOBILE OPTIMIZATION
+-------------------------------------------------- */
+@media (max-width: 1000px) {
+    .header-hero {
+        padding: 40px 15px;
+        border-radius: 0 0 20px 20px;
+    }
+
+    .logo-main {
+        width: 160px;
+    }
+
+    /* ----------- SCHEDULE SECTION ----------- */
+    .schedule-section {
+        width: 100%;
+        max-width: 700px;
+        margin: 40px auto;
+        padding: 25px 20px;
+        background: #bd6a17;
+        border-radius: 20px;
+        text-align: center;
+        color: white;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, .25);
+    }
+
+    .schedule-title {
+        font-size: 36px;
+        font-weight: 900;
+        margin-bottom: 10px;
+    }
+
+    .schedule-day,
+    .schedule-time {
+        font-size: 22px;
+        margin: 5px 0;
+        font-weight: bold;
+    }
+
+
+    .schedule-icon {
+        font-size: 36px;
+    }
+
+    .endorse-wrap {
+        width: 90%;
+        padding: 30px 20px;
+        border-radius: 25px;
+        margin: 40px auto;
+    }
+
+    .endorse-wrap h2 {
+        font-size: 22px;
+    }
+
+    .endorse-wrap h3 {
+        font-size: 36px;
+    }
+
+    .section-title {
+        font-size: 30px;
+        margin: 40px 0 25px;
+    }
+
+    .sosmed-item {
+        font-size: 18px;
+        padding: 16px 20px;
+        width: 90%;
+        margin: 12px auto;
+    }
+
+    .sosmed-item img {
+        width: 28px;
+        height: 28px;
+    }
+
+    footer {
+        font-size: 13px;
+        margin-top: 40px;
+    }
+}
+
+@media (max-width: 400px) {
+    .schedule-section h1 {
+        font-size: 28px;
+    }
+
+    .endorse-wrap h3 {
+        font-size: 30px;
+    }
+
+    .sosmed-item {
+        font-size: 16px;
+    }
+}
