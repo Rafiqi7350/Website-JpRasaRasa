@@ -1,309 +1,442 @@
 /* --------------------------------------------------
-   RESET & BASE STYLE
+   VARIABLES & RESET
 -------------------------------------------------- */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+:root {
+  --amber:     #F59E0B;
+  --amber-deep: #D97706;
+  --burnt:     #C2410C;
+  --cream:     #FEF3C7;
+  --cream-soft:#FFFBEB;
+  --brown-dark:#1C0A00;
+  --brown-mid: #78350F;
+  --white:     #FFFFFF;
+  --glass:     rgba(255,255,255,0.08);
+  --glass-border: rgba(255,255,255,0.15);
+
+  --ff-display: 'Playfair Display', Georgia, serif;
+  --ff-body:    'DM Sans', sans-serif;
+
+  --radius-card: 24px;
+  --radius-pill: 100px;
+  --shadow-card: 0 20px 60px rgba(0,0,0,0.18);
+  --transition:  all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
+*, *::before, *::after {
+  margin: 0; padding: 0; box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #f79c0a 0%, #e88d0a 100%);
-    color: #fff;
-    text-align: center;
-    min-height: 100vh;
-    padding-bottom: 50px;
+  font-family: var(--ff-body);
+  background: #0D0600;
+  color: var(--white);
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 /* --------------------------------------------------
-   HEADER (Logo + Background Makanan)
+   BACKGROUND ATMOSPHERE
 -------------------------------------------------- */
-.header-hero {
-    position: relative;
-    width: 100%;
-    max-width: 1600px;
-    margin: 0 auto 40px;
-    padding: 60px 20px;
-    overflow: hidden;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+.noise-overlay {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-repeat: repeat; background-size: 500px;
+  opacity: 0.35;
 }
 
+.orb {
+  position: fixed; border-radius: 50%; pointer-events: none; z-index: 0;
+  filter: blur(80px);
+}
+.orb-1 {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(245,158,11,0.3), transparent 70%);
+  top: -150px; left: -150px;
+  animation: orbFloat 12s ease-in-out infinite;
+}
+.orb-2 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(194,65,12,0.25), transparent 70%);
+  bottom: 20%; right: -100px;
+  animation: orbFloat 15s ease-in-out infinite reverse;
+}
+.orb-3 {
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(217,119,6,0.2), transparent 70%);
+  top: 50%; left: 50%; transform: translate(-50%,-50%);
+  animation: orbFloat 18s ease-in-out infinite;
+}
+
+@keyframes orbFloat {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  33%       { transform: translate(30px,-20px) scale(1.05); }
+  66%       { transform: translate(-20px,15px) scale(0.95); }
+}
+
+/* all sections need z-index above orbs */
+header, section, footer { position: relative; z-index: 1; }
+
+/* --------------------------------------------------
+   HEADER
+-------------------------------------------------- */
+.header-hero {
+  position: relative;
+  width: 100%; min-height: 420px;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+
+.header-inner {
+  position: relative; z-index: 4;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 16px;
+  padding: 60px 20px 80px;
+  text-align: center;
+}
+
+/* food image as full bleed bg */
 .bg-food {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  z-index: 1;
+  opacity: 0.18;
+  filter: saturate(1.2);
+}
+
+/* dark warm overlay */
+.header-hero::before {
+  content: "";
+  position: absolute; inset: 0; z-index: 2;
+  background: linear-gradient(160deg,
+    rgba(12,4,0,0.92) 0%,
+    rgba(28,10,0,0.85) 50%,
+    rgba(194,65,12,0.45) 100%);
+}
+
+/* subtle radial glow behind logo */
+.header-hero::after {
+  content: "";
+  position: absolute; inset: 0; z-index: 3;
+  background: radial-gradient(ellipse 60% 50% at 50% 50%,
+    rgba(245,158,11,0.2) 0%, transparent 70%);
+}
+
+.header-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  color: var(--amber);
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  padding: 6px 18px; border-radius: var(--radius-pill);
+  backdrop-filter: blur(10px);
+  animation: fadeDown 0.7s ease both;
 }
 
 .logo-main {
-    position: relative;
-    width: 220px;
-    z-index: 3;
-    filter: drop-shadow(0px 6px 20px rgba(0, 0, 0, 0.4));
-    animation: fadeInDown 0.8s ease;
+  width: 300px; max-width: 55vw;
+  filter: drop-shadow(0 8px 32px rgba(245,158,11,0.5));
+  animation: fadeDown 0.7s ease 0.1s both;
 }
 
-.header-hero::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(247, 156, 10, 0.9) 0%, rgba(195, 91, 0, 0.85) 100%);
-    z-index: 2;
+.header-tagline {
+  font-family: var(--ff-display);
+  font-size: clamp(14px, 3vw, 18px);
+  font-weight: 400; font-style: italic;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 1px;
+  animation: fadeDown 0.7s ease 0.2s both;
 }
 
-/* --------------------------------------------------
-   ENDORSEMENT SECTION
--------------------------------------------------- */
-.endorse-wrap {
-    background: linear-gradient(135deg, #ffe5b2 0%, #ffd89b 100%);
-    color: #c35b00;
-    width: 90%;
-    max-width: 1400px;
-    margin: 50px auto;
-    padding: 40px 30px;
-    border-radius: 30px;
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
-    animation: fadeInUp 0.8s ease 0.4s both;
-    transition: transform 0.3s ease;
-}
-
-.endorse-wrap:hover {
-    transform: translateY(-5px);
-}
-
-.endorse-wrap h2 {
-    font-size: 28px;
-    font-weight: 600;
-    margin-bottom: 10px;
-}
-
-.endorse-wrap h3 {
-    font-size: 48px;
-    margin: 15px 0 25px;
-    font-weight: 800;
-    background: linear-gradient(135deg, #ff6b35, #f7931e);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-shadow: none;
+.header-bottom-fade {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 120px; z-index: 5;
+  background: linear-gradient(to bottom, transparent, #0D0600);
 }
 
 /* --------------------------------------------------
-   BUTTONS & LINKS
+   SCHEDULE
 -------------------------------------------------- */
-.sosmed-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    color: #fff;
-    text-decoration: none;
-    background: linear-gradient(135deg, #d66412 0%, #bd6a17 100%);
-    width: 90%;
-    max-width: 650px;
-    margin: 15px auto;
-    padding: 18px 25px;
-    border-radius: 50px;
-    font-size: 20px;
-    font-weight: 600;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
+.schedule-section {
+  padding: 0 20px 60px;
+  max-width: 700px; margin: 0 auto;
 }
 
-.sosmed-item::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s ease;
+.schedule-inner {
+  background: linear-gradient(135deg, rgba(245,158,11,0.12), rgba(194,65,12,0.08));
+  border: 1px solid rgba(245,158,11,0.2);
+  border-radius: var(--radius-card);
+  padding: 36px 32px;
+  backdrop-filter: blur(20px);
+  animation: fadeUp 0.7s ease 0.3s both;
 }
 
-.sosmed-item:hover::before {
-    left: 100%;
+.schedule-label {
+  font-size: 30px; font-weight: 600; text-align: center;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--amber); margin-bottom: 28px;
 }
 
-.sosmed-item:hover {
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+.schedule-grid {
+  display: flex; align-items: center;
+  justify-content: center; gap: 0;
 }
 
-.sosmed-item:active {
-    transform: translateY(-1px) scale(0.98);
+.schedule-card {
+  display: flex; align-items: center; gap: 16px;
+  padding: 0 32px;
+  flex: 1; justify-content: center;
 }
 
-.sosmed-item img {
-    width: 32px;
-    height: 32px;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+.schedule-icon { font-size: 28px; }
+
+.schedule-card-label {
+  font-size: 11px; letter-spacing: 1.5px;
+  text-transform: uppercase; color: rgba(255,255,255,0.4);
+  margin-bottom: 4px;
+}
+
+.schedule-card-value {
+  font-family: var(--ff-display);
+  font-size: clamp(18px, 4vw, 24px);
+  font-weight: 700; color: var(--white);
+}
+
+.schedule-divider {
+  width: 1px; height: 60px;
+  background: linear-gradient(to bottom, transparent, rgba(245,158,11,0.4), transparent);
+  flex-shrink: 0;
 }
 
 /* --------------------------------------------------
-   SOCIAL MEDIA SECTION
+   ENDORSEMENT
 -------------------------------------------------- */
-.section-title {
-    font-size: 38px;
-    margin: 50px 0 30px;
-    font-weight: 700;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-    animation: fadeIn 0.8s ease 0.6s both;
+.endorse-section {
+  padding: 0 20px 70px;
+  max-width: 700px; margin: 0 auto;
 }
 
-.social-container {
-    animation: fadeInUp 0.8s ease 0.7s both;
+.endorse-inner {
+  background: linear-gradient(135deg, #1A0800 0%, #2D1200 100%);
+  border: 1px solid rgba(245,158,11,0.25);
+  border-radius: var(--radius-card);
+  padding: 48px 40px;
+  text-align: center;
+  box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255,255,255,0.05);
+  animation: fadeUp 0.7s ease 0.4s both;
+  position: relative; overflow: hidden;
+}
+
+/* decorative corner accent */
+.endorse-inner::before {
+  content: "";
+  position: absolute; top: 0; right: 0;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle at top right,
+    rgba(245,158,11,0.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.endorse-eyebrow {
+  font-size: 20px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--amber);
+  margin-bottom: 12px;
+}
+
+.endorse-title {
+  font-family: var(--ff-display);
+  font-size: clamp(26px, 6vw, 38px);
+  font-weight: 900; line-height: 1.2;
+  color: var(--white);
+  margin-bottom: 20px;
+}
+
+.endorse-platform {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--amber), var(--burnt));
+  color: var(--white); font-size: 13px;
+  font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 20px; border-radius: var(--radius-pill);
+  margin-bottom: 32px;
+}
+
+.cta-btn {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  color: var(--white); text-decoration: none;
+  font-size: 16px; font-weight: 600;
+  padding: 16px 32px; border-radius: var(--radius-pill);
+  box-shadow: 0 8px 30px rgba(37,211,102,0.3);
+  transition: var(--transition);
+  width: 100%; max-width: 400px;
+  justify-content: center;
+}
+
+.cta-btn img { width: 26px; height: 26px; }
+
+.btn-arrow {
+  width: 18px; height: 18px;
+  transition: transform 0.3s ease;
+  margin-left: auto;
+}
+
+.cta-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 40px rgba(37,211,102,0.4);
+}
+
+.cta-btn:hover .btn-arrow { transform: translateX(4px); }
+.cta-btn:active { transform: translateY(0); }
+
+/* --------------------------------------------------
+   SOCIAL MEDIA
+-------------------------------------------------- */
+.social-section {
+  padding: 0 20px 80px;
+  max-width: 700px; margin: 0 auto;
+}
+
+.social-header {
+  text-align: center; margin-bottom: 32px;
+  animation: fadeUp 0.7s ease 0.5s both;
+}
+
+.social-eyebrow {
+  font-size: 11px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--amber);
+  margin-bottom: 10px;
+}
+
+.social-title {
+  font-family: var(--ff-display);
+  font-size: clamp(22px, 5vw, 32px);
+  font-weight: 700; color: var(--white);
+}
+
+.social-grid {
+  display: flex; flex-direction: column; gap: 14px;
+  animation: fadeUp 0.7s ease 0.6s both;
+}
+
+.social-card {
+  display: flex; align-items: center; gap: 18px;
+  padding: 20px 24px;
+  border-radius: var(--radius-card);
+  text-decoration: none; color: var(--white);
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.04);
+  position: relative; overflow: hidden;
+  transition: var(--transition);
+}
+
+/* subtle color accent per platform */
+.social-card.tiktok   { --accent: rgba(105,201,208, 0.12); }
+.social-card.instagram{ --accent: rgba(225,109,150, 0.12); }
+.social-card.youtube  { --accent: rgba(255, 80, 80, 0.12); }
+
+.social-card-bg {
+  position: absolute; inset: 0;
+  background: var(--accent);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.social-card:hover .social-card-bg { opacity: 1; }
+
+.social-card img {
+  width: 42px; height: 42px;
+  border-radius: 12px;
+  position: relative; z-index: 1;
+  flex-shrink: 0;
+}
+
+.social-card-info {
+  display: flex; flex-direction: column; gap: 3px;
+  position: relative; z-index: 1;
+}
+
+.social-card-platform {
+  font-size: 11px; letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+}
+
+.social-card-handle {
+  font-size: 18px; font-weight: 600;
+  color: var(--white);
+}
+
+.social-arrow {
+  width: 20px; height: 20px;
+  margin-left: auto; flex-shrink: 0;
+  color: rgba(255,255,255,0.3);
+  position: relative; z-index: 1;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-card:hover {
+  border-color: rgba(255,255,255,0.15);
+  transform: translateX(6px);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+
+.social-card:hover .social-arrow {
+  transform: translateX(4px);
+  color: rgba(255,255,255,0.8);
 }
 
 /* --------------------------------------------------
    FOOTER
 -------------------------------------------------- */
 footer {
-    margin-top: 60px;
-    padding: 20px;
-    font-size: 14px;
-    color: rgba(76, 47, 0, 0.7);
-    font-weight: 500;
-    letter-spacing: 0.5px;
+  padding: 0 20px 40px;
+  text-align: center;
+  max-width: 700px; margin: 0 auto;
 }
+
+.footer-line {
+  height: 1px; margin-bottom: 24px;
+  background: linear-gradient(to right, transparent, rgba(245,158,11,0.3), transparent);
+}
+
+.footer-inner {
+  display: flex; align-items: center;
+  justify-content: center; gap: 12px;
+  font-size: 13px; color: rgba(255,255,255,0.3);
+  letter-spacing: 0.5px;
+}
+
+.footer-dot { color: var(--amber); font-size: 10px; }
 
 /* --------------------------------------------------
    ANIMATIONS
 -------------------------------------------------- */
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* --------------------------------------------------
-   RESPONSIVE MOBILE OPTIMIZATION
+   RESPONSIVE
 -------------------------------------------------- */
-@media (max-width: 1000px) {
-    .header-hero {
-        padding: 40px 15px;
-        border-radius: 0 0 20px 20px;
-    }
+@media (max-width: 500px) {
+  .schedule-card { padding: 0 16px; }
+  .schedule-card-value { font-size: 18px; }
+  .schedule-icon { font-size: 22px; }
 
-    .logo-main {
-        width: 160px;
-    }
+  .endorse-inner { padding: 36px 24px; }
+  .cta-btn { font-size: 15px; padding: 15px 24px; }
 
-    /* ----------- SCHEDULE SECTION ----------- */
-    .schedule-section {
-        width: 100%;
-        max-width: 700px;
-        margin: 40px auto;
-        padding: 25px 20px;
-        background: #bd6a17;
-        border-radius: 20px;
-        text-align: center;
-        color: white;
-        box-shadow: 0 8px 15px rgba(0, 0, 0, .25);
-    }
-
-    .schedule-title {
-        font-size: 36px;
-        font-weight: 900;
-        margin-bottom: 10px;
-    }
-
-    .schedule-day,
-    .schedule-time {
-        font-size: 22px;
-        margin: 5px 0;
-        font-weight: bold;
-    }
-
-
-    .schedule-icon {
-        font-size: 36px;
-    }
-
-    .endorse-wrap {
-        width: 90%;
-        padding: 30px 20px;
-        border-radius: 25px;
-        margin: 40px auto;
-    }
-
-    .endorse-wrap h2 {
-        font-size: 22px;
-    }
-
-    .endorse-wrap h3 {
-        font-size: 36px;
-    }
-
-    .section-title {
-        font-size: 30px;
-        margin: 40px 0 25px;
-    }
-
-    .sosmed-item {
-        font-size: 18px;
-        padding: 16px 20px;
-        width: 90%;
-        margin: 12px auto;
-    }
-
-    .sosmed-item img {
-        width: 28px;
-        height: 28px;
-    }
-
-    footer {
-        font-size: 13px;
-        margin-top: 40px;
-    }
-}
-
-@media (max-width: 400px) {
-    .schedule-section h1 {
-        font-size: 28px;
-    }
-
-    .endorse-wrap h3 {
-        font-size: 30px;
-    }
-
-    .sosmed-item {
-        font-size: 16px;
-    }
+  .social-card { padding: 18px 18px; }
+  .social-card-handle { font-size: 16px; }
+  .social-card img { width: 36px; height: 36px; }
 }

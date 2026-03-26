@@ -4,61 +4,118 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JP.RasaRasa - Kuliner Nusantara</title>
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
-
 </head>
 <body>
 
-<!-- HEADER LOGO + BACKGROUND -->
-<div class="header-hero">
-    <img class="bg-food" src="assets/makanan.png" alt="Makanan Background">
+<!-- NOISE OVERLAY -->
+<div class="noise-overlay"></div>
+
+<!-- FLOATING ORBS -->
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<!-- HEADER -->
+<header class="header-hero">
+  <div class="header-inner">
+    <div class="header-badge">✦ Kuliner Nusantara</div>
     <img class="logo-main" src="assets/logo.png" alt="Logo JP.RasaRasa">
-</div>
+    <img class="bg-food" src="assets/makanan.png" alt="Makanan Background">
+    <div class="header-tagline">Cita Rasa Otentik Indonesia</div>
+  </div>
+  <div class="header-bottom-fade"></div>
+</header>
 
 <!-- SCHEDULE SECTION -->
 <section class="schedule-section">
-    <div class="schedule-content">
-        <h1 class="schedule-title">Jadwal Tayang</h1>
-        <p class="schedule-day" >🗓️ Setiap Senin - Sabtu</p>
-        <p class="schedule-time">🕔 Pukul 17.00 WIB</p>
+  <div class="schedule-inner">
+    <div class="schedule-label">Jadwal Tayang</div>
+    <div class="schedule-grid">
+      <div class="schedule-card">
+        <span class="schedule-icon">🗓️</span>
+        <div>
+          <div class="schedule-card-label">Hari Tayang</div>
+          <div class="schedule-card-value">Selasa, Kamis, dan Sabtu</div>
+        </div>
+      </div>
+      <div class="schedule-divider"></div>
+      <div class="schedule-card">
+        <span class="schedule-icon">🕔</span>
+        <div>
+          <div class="schedule-card-label">Jam Tayang</div>
+          <div class="schedule-card-value">Pukul 15.00 WIB</div>
+        </div>
+      </div>
     </div>
+  </div>
 </section>
 
-
 <!-- ENDORSEMENT -->
-<div class="endorse-wrap">
-    <h2>Collaboration & Endorsement</h2>
-    <h3>TIKTOK / REELS</h3>
-    <a class="sosmed-item" href="https://wa.me/6281330353589" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
-        <span>Hubungi Admin JpRasaRasa</span>
+<section class="endorse-section">
+  <div class="endorse-inner">
+    <div class="endorse-eyebrow">Kerjasama</div>
+    <h2 class="endorse-title">Collaboration &<br>Endorsement</h2>
+    <div class="endorse-platform">TIKTOK / REELS</div>
+    <a class="cta-btn" href="https://wa.me/6281330353589" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+      <span>Hubungi Admin JpRasaRasa</span>
+      <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
-</div>
+  </div>
+</section>
 
 <!-- SOCIAL MEDIA -->
-<h2 class="section-title">Ikuti Sosial Media Lainya</h2>
+<section class="social-section">
+  <div class="social-header">
+    <div class="social-eyebrow">Temukan Kami</div>
+    <h2 class="social-title">Ikuti Sosial Media Lainnya</h2>
+  </div>
 
-<div class="social-container">
-    <a class="sosmed-item" href="https://www.tiktok.com/@jp.rasarasa?is_from_webapp=1&sender_device=pc" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="TikTok">
-        <span>jp.rasarasa</span>
+  <div class="social-grid">
+    <a class="social-card tiktok" href="https://www.tiktok.com/@jp.rasarasa?is_from_webapp=1&sender_device=pc" target="_blank">
+      <div class="social-card-bg"></div>
+      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="TikTok">
+      <div class="social-card-info">
+        <span class="social-card-platform">TikTok</span>
+        <span class="social-card-handle">@jp.rasarasa</span>
+      </div>
+      <svg class="social-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
-    
-    <a class="sosmed-item" href="https://www.instagram.com/jp.rasarasa?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/128/174/174855.png" alt="Instagram">
-        <span>jp.rasarasa</span>
+
+    <a class="social-card instagram" href="https://www.instagram.com/jp.rasarasa?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">
+      <div class="social-card-bg"></div>
+      <img src="https://cdn-icons-png.flaticon.com/128/174/174855.png" alt="Instagram">
+      <div class="social-card-info">
+        <span class="social-card-platform">Instagram</span>
+        <span class="social-card-handle">@jp.rasarasa</span>
+      </div>
+      <svg class="social-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
 
-
-    <a class="sosmed-item" href="https://www.youtube.com/@jp.rasarasa" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
-        <span>Jp.RasaRasa</span>
+    <a class="social-card youtube" href="https://www.youtube.com/@jp.rasarasa" target="_blank">
+      <div class="social-card-bg"></div>
+      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
+      <div class="social-card-info">
+        <span class="social-card-platform">YouTube</span>
+        <span class="social-card-handle">Jp.RasaRasa</span>
+      </div>
+      <svg class="social-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
-</div>
+  </div>
+</section>
 
-<footer>© 2025 JP.RasaRasa • Designed by rafiqi_ar</footer>
+<footer>
+  <div class="footer-line"></div>
+  <div class="footer-inner">
+    <span>© 2026 JP.RasaRasa</span>
+    <span class="footer-dot">✦</span>
+    <span>Designed by rafiqi_ar</span>
+  </div>
+</footer>
 
 </body>
 </html>
-
